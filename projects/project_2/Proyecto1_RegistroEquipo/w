@@ -214,7 +214,6 @@ class WordRelate:
                                                    init='random').fit_transform(self.vrm[collection_id])
         if dim_reducer == 'pca':
             self.reduced_vrm[collection_id] = PCA(n_components=2).fit_transform(self.vrm[collection_id])
-        return self.reduced_vrm[collection_id]
 
     def plot_reps(self):
         '''
@@ -344,7 +343,6 @@ if __name__ == '__main__':
     palabras = wc.get_voc(collection, stopwords)
     x = wc.dist_rep(collection)
     x = pd.DataFrame(x.T,index=palabras,columns=palabras)
-    y = wc.dim_redux(collection)
-    y = pd.DataFrame(y.T,index=palabras,columns=palabras)
+    wc.dim_redux(collection)
     wc.ppmi_reweight(collection)
     wc.plot_reps()
